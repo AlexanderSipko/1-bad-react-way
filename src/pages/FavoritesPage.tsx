@@ -1,14 +1,14 @@
-import { useFavorites } from "@/hooks/useFavorites";
+import { setupFavoritesDeps } from "./setupFavorites";
 import { CharacterList } from "@/components/CharacterList";
 
 export function FavoritesPage() {
-  const { list, isFavorite, toggleFavorite, clearFavorites } = useFavorites();
+  const { characters, isFavorite, toggleFavorite, clearFavorites } = setupFavoritesDeps();
 
   return (
     <div className="p-4">
       <div className="flex items-center justify-between mb-2">
         <h2 className="text-xl font-semibold">Favorites</h2>
-        {list.length > 0 && (
+        {characters.length > 0 && (
           <button
             className="text-sm underline text-muted-foreground"
             onClick={clearFavorites}
@@ -18,10 +18,12 @@ export function FavoritesPage() {
           </button>
         )}
       </div>
+      
       <CharacterList
-        items={list}
+        characters={characters}
         isFavorite={isFavorite}
-        onToggleFavorite={toggleFavorite}
+        toggleFavorite={toggleFavorite}
+        className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4"
       />
     </div>
   );

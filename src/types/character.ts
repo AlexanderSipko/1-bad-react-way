@@ -15,3 +15,43 @@ export interface CharacterAPIResponse {
   };
   results: Character[];
 }
+
+
+export type RenderCardProps = {
+  character: Character;
+  isFavorite: (id: number) => boolean;
+  toggleFavorite: (c: Character) => void;
+};
+
+export type CharacterListProps = {
+  characters: Character[];
+  isFavorite: (id: number) => boolean;
+  toggleFavorite: (c: Character) => void;
+  className: string
+};
+
+export interface SearchInputProps {
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  onEnter?: () => void;
+}
+
+
+
+export interface SearchButtonProps {
+  onClick: () => void;
+  loading?: boolean;
+  children?: React.ReactNode;
+}
+
+
+
+export interface Props {
+  value: string;
+  onChange: (v: string) => void;
+  onSearch?: () => void;
+  loading?: boolean;
+  placeholder?:string,
+  buttonText?: string;
+}

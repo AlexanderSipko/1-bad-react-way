@@ -1,30 +1,32 @@
-import type { Character } from "@/types/character";
-import { CharacterCard } from "./CharacterCard";
+import { List } from "@/shared/ui/List";
+import { CharacterCard } from "@/components/CharacterCard";
+import { RenderCardProps, CharacterListProps } from "@/types/character";
 
-interface Props {
-  items: Character[];
-  isFavorite: (id: number) => boolean;
-  onToggleFavorite: (c: Character) => void;
-}
+const RenderCard = ({character, isFavorite, toggleFavorite}:RenderCardProps) => {
+    return <CharacterCard
+              key={character.id} 
+              character={character}
+              favorite={isFavorite(character.id)}
+              onToggleFavorite={toggleFavorite}
+  />}
+
 
 export const CharacterList = ({
-  items,
-  isFavorite,
-  onToggleFavorite,
-}: Props) => {
-  if (!items.length)
-    return <div className="text-sm text-muted-foreground mt-4">No results</div>;
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
-      {items.map((c) => (
-        <CharacterCard
-          key={c.id}
-          character={c}
-          favorite={isFavorite(c.id)}
-          onToggleFavorite={onToggleFavorite}
-        />
-      ))}
-    </div>
-  );
+    characters,
+    isFavorite,
+    toggleFavorite,
+    className
+}: CharacterListProps) => {
+    return   <List
+                data={characters}
+                renderData={
+                    (character) =>
+                    <RenderCard
+                        character={character}
+                        isFavorite={isFavorite}
+                        toggleFavorite={toggleFavorite}/>
+                    }
+                className={className}
+            >                                   
+            </List>;
 };
