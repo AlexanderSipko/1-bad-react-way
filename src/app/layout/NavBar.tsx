@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import { NavPath } from "@/app/setupApp"
 
 function NavBar() {
   const linkBase =
@@ -8,18 +9,18 @@ function NavBar() {
   return (
     <nav className="border-b">
       <div className="container mx-auto p-4 flex items-center gap-4">
-        <Link to="/" className="font-semibold">
+        <Link to={NavPath.CHARACTERS_PAGE} className="font-semibold">
           R&M
         </Link>
         <NavLink
-          to="/"
+          to={NavPath.CHARACTERS_PAGE}
           end
           className={({ isActive }) => `${linkBase} ${isActive ? active : ""}`}
         >
           Characters
         </NavLink>
         <NavLink
-          to="/favorites"
+          to={NavPath.FAVORITES_PAGE}
           className={({ isActive }) => `${linkBase} ${isActive ? active : ""}`}
         >
           Favorites

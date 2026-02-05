@@ -1,6 +1,6 @@
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { SearchButtonProps, SearchInputProps, Props} from '@/types/character'
+import { Input } from "@/shared/ui/input";
+import { Button } from "@/shared/ui/button";
+import { SearchButtonProps, SearchInputProps, Props} from '@/shared/types/character'
 
 export const SearchInput = ({ 
   value, 
@@ -33,7 +33,9 @@ export const SearchButton = ({
 };
 
 
-export const SearchBar = ({ value, onChange, onSearch, loading, placeholder="search", buttonText = "Search" }: Props) => {
+export const SearchBar = ({
+  value, onChange, onSearch, loading,
+  placeholder="search", buttonText = "Search" }: Props) => {
   return (
     <div className="flex gap-2">
       <SearchInput

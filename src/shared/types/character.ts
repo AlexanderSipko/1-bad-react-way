@@ -20,13 +20,13 @@ export interface CharacterAPIResponse {
 export type RenderCardProps = {
   character: Character;
   isFavorite: (id: number) => boolean;
-  toggleFavorite: (c: Character) => void;
+  toggleFavorite: (id: number) => void;
 };
 
 export type CharacterListProps = {
   characters: Character[];
   isFavorite: (id: number) => boolean;
-  toggleFavorite: (c: Character) => void;
+  toggleFavorite: (id: number) => void;
   className: string
 };
 
