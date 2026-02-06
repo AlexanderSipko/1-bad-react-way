@@ -4,6 +4,7 @@ import { CharactersContext } from '@/entities/provider/CharactersProvider'
 import { CharacterCard } from "@/shared/ui/CharacterCard";
 import { SearchBar } from "@/shared/ui/SearchBar";
 import { CharacterList } from "@/shared/ui/CharacterList";
+import { Character } from "@/shared/types/character";
 
 
 export function CharactersPage() {

@@ -15,6 +15,7 @@ export const setupDI = () => {
   ? new CharactersMocApi() 
   : new CharacterApi();
 
+  console.log(import.meta.env.VITE_USE_MOD)
   const store = new CharactersLocalStore();
 
   const characterService = new CharacterService(repository);
