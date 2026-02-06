@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { CharacterList } from "@/entities/CharacterList";
-import { CharactersContext } from '@/shared/provider/CharactersProvider'
+import { CharacterList } from "@/shared/ui/CharacterList";
+import { CharacterCard } from "@/shared/ui/CharacterCard";
+import { CharactersContext } from '@/entities/provider/CharactersProvider'
 
 export function FavoritesPage() {
 
@@ -25,10 +26,17 @@ export function FavoritesPage() {
       
       <CharacterList
         characters={favoriteCharacters}
-        isFavorite={isFavorite}
-        toggleFavorite={toggleFavorite}
         className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4"
-      />
+      >
+        {(character) => (
+          <CharacterCard
+            key={character.id}
+            character={character}
+            favorite={isFavorite(character.id)}
+            onToggleFavorite={() => toggleFavorite(character.id)}
+          />
+        )}
+      </CharacterList>
     </div>
   );
 }

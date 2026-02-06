@@ -15,12 +15,14 @@ export class CharacterApi {
     }
     try {
       const response = await httpClient.get(this.ENDPOINT, { params });
-      return {
-        info: response.data.info,
-        data: response.data.results || []
-      };
+      return response
+      // return {
+      //   info: response.data.info,
+      //   data: response.data.results || []
+      // };
     } catch (error) {
       if (axios.isAxiosError(error) && error.response?.status === 404) {
+        return response
         return {
           info: {
             count: 0,

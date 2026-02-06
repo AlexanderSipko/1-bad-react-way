@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { actionTypes } from "@/shared/provider/charactersReducer";
+import { actionTypes } from "@/entities/provider/charactersReducer";
 
 export const useCharacterActions = (state, dispatch) => {
   const { characterService, characterStore, query, favoriteIds, characters } = state;
@@ -13,16 +13,34 @@ export const useCharacterActions = (state, dispatch) => {
       const result = query.trim() 
         ? await characterService.searchCharacters(query)
         : await characterService.getCharacters();
-      
+      const responseData = result.data;
       dispatch({ 
         type: actionTypes.FETCH_CHARACTERS_SUCCESS, 
-        payload: result.data 
+        payload: {
+          info: responseData.info,
+          results: responseData.results || []
+        }
       });
     } catch (error) {
-      dispatch({ 
-        type: actionTypes.FETCH_CHARACTERS_ERROR, 
-        payload: error.message 
-      });
+      if (error.response?.status === 404) {
+        dispatch({ 
+          type: actionTypes.FETCH_CHARACTERS_SUCCESS, 
+          payload: {
+            info: {
+              count: 0,
+              pages: 0,
+              next: null,
+              prev: null
+            },
+            results: []
+          }
+        });
+      } else {
+        dispatch({ 
+          type: actionTypes.FETCH_CHARACTERS_ERROR, 
+          payload: error.message 
+        });
+      }
     }
   }, [characterService, query, dispatch]);
 

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./layout/NavBar";
-import { CharactersProvider } from '@/shared/provider/CharactersProvider';
+import { CharactersProvider } from '@/entities/provider/CharactersProvider';
 import { setupDI } from './setupApp'
 
 

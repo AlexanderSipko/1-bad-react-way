@@ -4,6 +4,7 @@ export const initialState = {
   characterStore: null,
   characters: [],
   favoriteIds: [],
+  info:null,
   loading: false,
   error: null,
 };
@@ -39,26 +40,29 @@ export const reducer = (state, action) => {
         characterStore: action.payload
       };
   
-    case actionTypes.FETCH_CHARACTERS_START:
-      return {
-        ...state,
-        loading: true,
-        error: null
-      };
-    
-    case actionTypes.FETCH_CHARACTERS_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        characters: action.payload
-      };
-    
-    case actionTypes.FETCH_CHARACTERS_ERROR:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload
-      };
+      case actionTypes.FETCH_CHARACTERS_START:
+        return {
+          ...state,
+          isLoading: true,
+          error: null
+        };
+      
+      case actionTypes.FETCH_CHARACTERS_SUCCESS:
+        return {
+          ...state,
+          isLoading: false,
+          error: null,
+          characters: action.payload.results || [],
+          info: action.payload.info
+        };
+      
+      case actionTypes.FETCH_CHARACTERS_ERROR:
+        return {
+          ...state,
+          isLoading: false,
+          error: action.payload,
+          characters: []
+        };
     
     case actionTypes.FETCH_FAVORITES_SUCCESS:
       return {

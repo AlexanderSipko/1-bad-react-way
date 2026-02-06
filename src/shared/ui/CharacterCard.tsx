@@ -1,5 +1,5 @@
 import type { Character } from "@/shared/types/character";
-import { Card, CardTitle, CardContent } from "@/entities/ui/card";
+import { Card, CardTitle, CardContent } from "@/shared/ui/card";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/lib/utils";
 import { Star } from "lucide-react";

@@ -17,18 +17,17 @@ export interface CharacterAPIResponse {
 }
 
 
-export type RenderCardProps = {
+export interface RenderCardProps {
   character: Character;
-  isFavorite: (id: number) => boolean;
-  toggleFavorite: (id: number) => void;
-};
+  favorite: boolean;
+  onToggleFavorite: () => void;
+}
 
-export type CharacterListProps = {
+export interface CharacterListProps {
   characters: Character[];
-  isFavorite: (id: number) => boolean;
-  toggleFavorite: (id: number) => void;
-  className: string
-};
+  className?: string;
+  children: (character: Character) => React.ReactNode;
+}
 
 export interface SearchInputProps {
   value: string;

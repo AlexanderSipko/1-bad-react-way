@@ -1,8 +1,9 @@
 // CharactersPage.tsx
 import { useContext } from "react";
-import { CharactersContext } from '@/shared/provider/CharactersProvider'
-import { SearchBar } from "@/entities/SearchBar";
-import { CharacterList } from "@/entities/CharacterList";
+import { CharactersContext } from '@/entities/provider/CharactersProvider'
+import { CharacterCard } from "@/shared/ui/CharacterCard";
+import { SearchBar } from "@/shared/ui/SearchBar";
+import { CharacterList } from "@/shared/ui/CharacterList";
 
 
 export function CharactersPage() {
@@ -19,13 +20,20 @@ export function CharactersPage() {
 
       {error && <div className="text-red-600">Error: {error}</div>}
       {loading && <div className="text-center">Loading...</div>}
-
+      
       <CharacterList
         characters={characters}
-        isFavorite={isFavorite}
-        toggleFavorite={toggleFavorite}
         className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4"
-      />
+      >
+        {(character) => (
+          <CharacterCard
+            key={character.id}
+            character={character}
+            favorite={isFavorite(character.id)}
+            onToggleFavorite={() => toggleFavorite(character.id)}
+          />
+        )}
+      </CharacterList>
     </div>
   );
 }

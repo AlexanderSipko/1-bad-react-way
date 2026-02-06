@@ -1,23 +1,26 @@
-
 export class CharactersMocApi {
     
-  getCharacters() {
-    return {
-        info: mockData.info,
-        data: mockData.results
-      }
+    async getCharacters() {
+      return {
+        data: {
+          info: mockData.info,
+          results: mockData.results
+        }
+      };
+    }
+  
+    async searchCharacters(query) {
+      const filtered = mockData.results.filter(character => 
+        character.name.toLowerCase().includes(query.toLowerCase())
+      );
+      return {
+        data: {
+          info: { ...mockData.info, count: filtered.length },
+          results: filtered
+        }
+      };
+    }
   }
-
-  async searchCharacters(query) {
-    const filtered = mockData.results.filter(character => 
-      character.name.toLowerCase().includes(query.toLowerCase())
-    );
-    return {
-      info: { ...mockData.info, count: filtered.length },
-      data: filtered
-    };
-  }
-}
 
 const mockData =
 {
