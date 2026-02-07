@@ -3,8 +3,7 @@ import { useContext } from "react";
 import { CharactersContext } from '@/entities/provider/CharactersProvider'
 import { CharacterCard } from "@/shared/ui/CharacterCard";
 import { SearchBar } from "@/shared/ui/SearchBar";
-import { CharacterList } from "@/shared/ui/CharacterList";
-import { Character } from "@/shared/types/character";
+import { CharacterRenderPropsList } from "@/shared/ui/CharacterRenderPropsList";
 
 
 export function CharactersPage() {
@@ -22,7 +21,7 @@ export function CharactersPage() {
       {error && <div className="text-red-600">Error: {error}</div>}
       {loading && <div className="text-center">Loading...</div>}
       
-      <CharacterList
+      <CharacterRenderPropsList
         characters={characters}
         className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4"
       >
@@ -34,7 +33,7 @@ export function CharactersPage() {
             onToggleFavorite={() => toggleFavorite(character.id)}
           />
         )}
-      </CharacterList>
+      </CharacterRenderPropsList>
     </div>
   );
 }
